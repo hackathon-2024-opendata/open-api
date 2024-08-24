@@ -1,0 +1,53 @@
+openapi: 3.0.0
+info:
+  title: Cooling Map API
+  version: 1.0.0
+
+servers:
+  - url: https://api.example.com/v1
+
+paths:
+  /cooling-shelter/locations:
+    get:
+      summary: クーリングシェルタの位置情報取得
+      description: 指定された緯度経度付近のクーリングシェルタのリストを返す。
+      parameters:
+        - in: query
+          name: latitude
+          schema:
+            type: number
+            format: float
+          required: true
+          description: 緯度
+        - in: query
+          name: longitude
+          schema:
+            type: number
+            format: float
+          required: true
+          description: 経度
+      responses:
+        '200':
+          description: 近くのクーリングシェルタ
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    name:
+                      type: string
+                      description: 名前
+                    latitude:
+                      type: number
+                      format: float
+                      description: 緯度
+                    longitude:
+                      type: number
+                      format: float
+                      description: 経度
+        '400':
+          description: Invalid input, object invalid.
+        '500':
+          description: Internal server error.
