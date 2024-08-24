@@ -39,6 +39,9 @@ paths:
                     name:
                       type: string
                       description: 名前
+                    id:
+                      type: number
+                      description: クーリングシェルタのid
                     latitude:
                       type: number
                       format: float
